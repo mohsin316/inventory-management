@@ -1,0 +1,32 @@
+.product-item {
+  outline: 3px solid hsl(var(--tertiary));
+  border-radius: 1rem;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.item-image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.details {
+  padding-block: 1rem;
+}
+
+.details h2 {
+  text-align: center;
+  font-weight: var(--lg);
+  font-size: 1.5rem;
+  color: hsl(var(--secondary));
+}
+
+.price-qty {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  margin-inline: 1rem;
+  margin-top: 1.5rem;
+  color: hsl(var(--secondary));
+}
