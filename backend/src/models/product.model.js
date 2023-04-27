@@ -17,7 +17,18 @@ export const productSchema = new mongoose.Schema({
     name:{
         type: String,
         required: [true,"Please Provide Product Name"]
-    }
-    
+    },
+    stock:{
+        type: Number,
+        required: true
+    },
+    cost:{
+        type: Number,
+        required: true
+    }    
+},
+{
+    timestamp:true,
+});
 
-})
+export default mongoose.model.ProductInfo || mongoose.model('productInfo', productSchema)
