@@ -19,6 +19,14 @@ import Radio from "../assets/radio.jpg";
 import Table from "../assets/table.jpg";
 
 export default function Item({ pic }) {
+  const selectCat = (pic) => {
+    if (pic % 2 === 0) {
+      return "cat1";
+    } else {
+      return "cart2";
+    }
+  };
+
   const selectPic = (pic) => {
     switch (pic) {
       case 0:
@@ -37,14 +45,18 @@ export default function Item({ pic }) {
         return Chair;
     }
   };
+
   const image = selectPic(pic);
   return (
-    <Link to={`product/${pic}`} className="product-item">
+    <Link to={`product/${pic}`} query={"testing"} className="product-item">
       <div className="item-image-container">
         <img src={image} alt="item" height={250} />
       </div>
       <div className="details">
-        <h2>Item Name{pic}</h2>
+        <div className="name-category">
+          <strong className="category">{selectCat(pic)}</strong>
+          <h2>Item Name{pic}</h2>
+        </div>
         <div className="price-qty">
           <small>Price: $200</small>
           <small>Qty: 15</small>

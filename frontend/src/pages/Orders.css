@@ -1,0 +1,33 @@
+.order-container {
+  display: flex;
+  justify-content: center;
+}
+
+table,
+td {
+  border: 1px solid hsl(var(--secondary));
+}
+
+th {
+  font-weight: var(--bold);
+  font-size: 1.25rem;
+  padding-block: 0.75rem;
+}
+
+thead,
+tfoot {
+  background-color: hsl(var(--secondary));
+  color: #fff;
+}
+
+td {
+  padding: 1.5rem 4rem;
+}
+
+tr button {
+  padding: 1.5rem 1rem;
+}
+
+.status-block {
+  background-color: yellow;
+}
