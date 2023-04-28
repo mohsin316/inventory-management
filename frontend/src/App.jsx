@@ -8,16 +8,16 @@ import {
 
 // components
 import Main from "./layouts/Main";
-import Dashboard from "./pages/Dashboard";
-import Product, { productLoader } from "./pages/Product";
+import Dashboard, { dashboardLoader } from "./pages/Dashboard";
+import Product from "./pages/Product";
 import Orders from "./pages/Orders";
 import Purchase, { companyLoader } from "./pages/Purchase";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Main />}>
-      <Route index element={<Dashboard />} />
-      <Route path="product/:id" element={<Product />} loader={productLoader} />
+      <Route index loader={dashboardLoader} element={<Dashboard />} />
+      <Route path="product/:id" element={<Product />} />
       <Route
         path="purchase/:id"
         element={<Purchase />}

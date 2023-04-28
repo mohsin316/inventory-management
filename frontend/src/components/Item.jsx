@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 Item.propTypes = {
-  pic: PropTypes.number,
+  product: PropTypes.object,
 };
 // images
 import Chair from "../assets/chair.jpg";
@@ -18,48 +18,44 @@ import Phone from "../assets/phone.jpg";
 import Radio from "../assets/radio.jpg";
 import Table from "../assets/table.jpg";
 
-export default function Item({ pic }) {
-  const selectCat = (pic) => {
-    if (pic % 2 === 0) {
-      return "cat1";
-    } else {
-      return "cart2";
-    }
-  };
-
-  const selectPic = (pic) => {
-    switch (pic) {
-      case 0:
+export default function Item({ product }) {
+  const selectPic = (pid) => {
+    switch (pid) {
+      case 100:
         return Chair;
-      case 1:
-        return Cube;
-      case 2:
-        return Fruit;
-      case 3:
+      case 101:
         return Table;
-      case 4:
+      case 102:
         return Radio;
-      case 5:
+      case 103:
         return Phone;
+      case 104:
+        return Cube;
+      case 105:
+        return Fruit;
       default:
         return Chair;
     }
   };
 
-  const image = selectPic(pic);
+  const image = selectPic(product.pid);
   return (
-    <Link to={`product/${pic}`} query={"testing"} className="product-item">
+    <Link
+      to={`product/${product.name}`}
+      state={{ ...product }}
+      className="product-item"
+    >
       <div className="item-image-container">
         <img src={image} alt="item" height={250} />
       </div>
       <div className="details">
         <div className="name-category">
-          <strong className="category">{selectCat(pic)}</strong>
-          <h2>Item Name{pic}</h2>
+          <strong className="category">{product.category}</strong>
+          <h2>{product.name}</h2>
         </div>
         <div className="price-qty">
-          <small>Price: $200</small>
-          <small>Qty: 15</small>
+          <small>Price: {product.cost}</small>
+          <small>Qty: {product.stock}</small>
         </div>
       </div>
     </Link>

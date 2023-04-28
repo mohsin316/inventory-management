@@ -1,12 +1,19 @@
 // react dom
-import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 // REACT
 import { useState } from "react";
 
 // styles
 import "./Product.css";
+
+// // prop types
+// import PropTypes from "prop-types";
+
+// Item.propTypes = {
+//   product: PropTypes.object,
+// };
 
 // images
 import Chair from "../assets/chair.jpg";
@@ -16,45 +23,32 @@ import Phone from "../assets/phone.jpg";
 import Radio from "../assets/radio.jpg";
 import Table from "../assets/table.jpg";
 
-export async function productLoader({ params }) {
-  const id = params.id;
-  return { id };
-}
-
 export default function Product() {
-  const { id } = useLoaderData();
+  const { state: product } = useLocation();
   const [sell, setSell] = useState("");
-
-  const selectCat = (id) => {
-    if (Number(id) % 2 === 0) {
-      return "cat1";
-    } else {
-      return "cart2";
-    }
-  };
 
   const sellItem = () => {
     console.log(sell, "delete this");
   };
-  const selectPic = (pic) => {
-    switch (pic) {
-      case 0:
+  const selectPic = (pid) => {
+    switch (pid) {
+      case 100:
         return Chair;
-      case 1:
-        return Cube;
-      case 2:
-        return Fruit;
-      case 3:
+      case 101:
         return Table;
-      case 4:
+      case 102:
         return Radio;
-      case 5:
+      case 103:
         return Phone;
+      case 104:
+        return Cube;
+      case 105:
+        return Fruit;
       default:
-        return Phone;
+        return Chair;
     }
   };
-  const image = selectPic(Number(id));
+  const image = selectPic(product.pid);
 
   return (
     <section className="container product-container ">
@@ -62,8 +56,8 @@ export default function Product() {
         <img src={image} alt="product image" />
       </div>
       <div className="information flow" style={{ "--flow-spacer": "4rem" }}>
-        <h2>Title of product</h2>
-        <strong className="category">{selectCat(id)}</strong>
+        <h2>{product.name}</h2>
+        <strong className="category">{product.category}</strong>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
           velit sunt eligendi? Exercitationem, explicabo neque ut dolores at
@@ -75,10 +69,10 @@ export default function Product() {
         </p>
         <div className="price-qty-info">
           <small>
-            <span>Price:</span> $200
+            <span>Price:</span> {product.cost}
           </small>
           <small>
-            <span>Qty:</span> 15
+            <span>Qty:</span> {product.stock}
           </small>
         </div>
 
@@ -92,7 +86,7 @@ export default function Product() {
             />
             <button onClick={sellItem}>Sell:</button>
           </label>
-          <Link to={`/purchase/${id}`}>Order More</Link>
+          <Link to={`/purchase/${product.name}`}>Order More</Link>
         </div>
       </div>
     </section>
