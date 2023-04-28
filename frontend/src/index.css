@@ -3,6 +3,9 @@
   --secondary: 216, 44%, 25%;
   --tertiary: 205, 38%, 40%;
 
+  --accent-one: 166, 73%, 88%;
+  --accent-two: 89, 60%, 72%;
+
   --ff: "Roboto", sans-serif;
 
   --sm: 300;
@@ -74,6 +77,10 @@ li {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+:where(.flow > :not(:first-child)) {
+  margin-top: var(--flow-spacer, 1em);
 }
 
 body {
